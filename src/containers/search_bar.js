@@ -29,6 +29,13 @@ class SearchBar extends Component {
                     className="form-control"
                     value={this.state.term}
                     onChange={(event) => this.onInputChange(event)}
+                //earlier we used onChange = {this.onInputChange}, 
+                //without calling onInputChange inside arrow function
+                //the problem with this is, 'this' keyword no longer holds the SearchBar component context
+                //'this' becomes undefined, unless we bind 'this' inside our constructor, which
+                //we see as a commented line that binds the 'SearchBar' context to onInputChange method
+                //'this' = instance of SearchBar context, which we are creating using <SearchBar/> inside app.js
+                //its not the SearchBar context itself
                 />
                 <span className="input-group-btn">
                     <button type="submit" className="btn btn-secondary">
